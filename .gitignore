@@ -1,0 +1,7 @@
+/secrets/
+
+/node_modules/
+
+/build/
+
+*.tmproj

@@ -1,0 +1,64 @@
+// --------
+// globals
+// --------
+$gray: #5D5D5D;
+$darkblue: #00093E;
+$lightblue: #5F7DDB;
+
+@import 'fonts';
+
+body {
+  @include open_sans;
+  max-width: 1000px;
+}
+
+svg {
+   // axis ticks
+  .axis path, .axis line {
+    fill: none;
+    stroke: $gray;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+  }
+  // axis text
+  .axis text {
+    font-size: 1.5em;
+    @include open_sans;
+  }
+  // graph line
+  path {
+    stroke-width: 7;
+    fill: none;
+  }
+  
+  .circle {
+    fill: none;
+    stroke-width: 1.5px;
+  }
+
+  .boundary {
+    fill: none;
+    stroke: #777;
+    stroke-width: .5px;
+    stroke-opacity: .5;
+  }
+
+  .state-boundary, .land {
+    fill: none;
+    stroke: $lightblue;
+    stroke-width: 1px;
+  }
+
+  .county-boundary {
+    fill: none;
+    stroke: $lightblue;
+    stroke-width: 0.5px;
+    stroke-opacity: 0.5;
+  }
+  
+}
+
+
+
+
+
