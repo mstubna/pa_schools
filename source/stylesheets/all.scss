@@ -2,6 +2,7 @@
 // globals
 // --------
 $gray: #5D5D5D;
+$darkgray: rgba(50, 50, 50, 0.8);;
 $darkblue: #00093E;
 $lightblue: #5F7DDB;
 
@@ -9,7 +10,34 @@ $lightblue: #5F7DDB;
 
 body {
   @include open_sans;
-  max-width: 1000px;
+  max-width: 1024px;
+  
+  p {
+    max-width: 500px;
+  }
+  
+  #graph_1_container {
+    position: relative;
+    width: 1024px;
+    height: 768px;
+    #graph_1 {
+      position: absolute;
+      width: 960px;
+      height: 100%;
+    }
+    .legend {
+      position: absolute;
+      width: 150px;
+      right: 0;
+      background: white;
+    }
+    #graph_1_legend_1 {
+      top: 50px;
+    }
+    #graph_1_legend_2 {
+      top: 225px;
+    }
+  }
 }
 
 svg {
@@ -32,7 +60,7 @@ svg {
   }
   
   .circle {
-    fill: none;
+    fill: rgba(0,0,0,0);
     stroke-width: 1.5px;
   }
 
@@ -54,9 +82,31 @@ svg {
     stroke: $lightblue;
     stroke-width: 0.5px;
     stroke-opacity: 0.5;
-  }
-  
+  } 
 }
+
+.d3-tip {
+  margin: auto;
+  font-size: 0.8em;
+  font-weight: bold;
+  padding: 5px;
+  background: $darkgray;
+  color: #fff;
+  min-width: 150px;
+  max-width: 300px;
+  p {
+    margin: 0;
+  }
+}
+
+.legend {
+  .legend-circle {
+    fill: none;
+    stroke: $darkgray;
+    stroke-width: 1.5px;
+  }
+}
+
 
 
 
