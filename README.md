@@ -4,7 +4,7 @@ A visualization of Pennsylvania High School SAT scores for the 2012-2013 school 
 
 [View the interactive demo](http://mountaintrackapps.com/pa_schools/index.html)
 
-<a href="http://mountaintrackapps.com/pa_schools/index.html"><image src="source/images/screen_shot.png"/></a>
+<a href="http://mountaintrackapps.com/pa_schools/index.html">![alt tag](http://mountaintrackapps.com/pa_schools/images/screen_shot.png)</a>
 
 ## Running and Building
 
