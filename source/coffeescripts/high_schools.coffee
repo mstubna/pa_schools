@@ -15,7 +15,7 @@ class HighSchools
     @height = 500 - @margin.top - @margin.bottom
 
    # create the view
-    @view = d3.select('#graph_1').append('svg')
+    @view = d3.select('#regional_graph').append('svg')
       .attr('width', @width + @margin.left + @margin.right)
       .attr('height', @height + @margin.top + @margin.bottom)
       .append('g')
@@ -77,11 +77,11 @@ class HighSchools
     # add the color legend
     colors = color_scale.range()
     legend_data = colors.map (c) -> { color: c, scores: color_scale.invertExtent(c) }
-    legend_view = d3.select('#graph_1_legend_1').append('svg')
+    legend_view = d3.select('#regional_graph_legend_1').append('svg')
       .attr('width', 200)
       .attr('height', 250)
       .append('g')
-      .attr('transform', "translate(50,20)")
+      .attr('transform', "translate(25,20)")
     legend_view.append('text')
       .text('Math SAT')
       .attr('class', 'legend_header')    
@@ -100,26 +100,27 @@ class HighSchools
       .text((d) -> "#{Math.round(d.scores[0])}-#{Math.round(d.scores[1])}")
     
     # add the size legend
-    r_values = [5, 8.75, 12.5, 16.25, 20]
-    legend_data = r_values.map (r) -> { r: r, size: Math.PI*(r_scale.invert(r))^2 }
-    legend_view_2 = d3.select('#graph_1_legend_2').append('svg')
+    sizes = [20,  250, 500, 750, 1000]
+    legend_data = sizes.map (s) -> { r: Math.sqrt(s/Math.PI), size: s }
+    legend_view_2 = d3.select('#regional_graph_legend_2').append('svg')
       .attr('width', 200)
       .attr('height', 250)
       .append('g')
-      .attr('transform', "translate(50,20)")
+      .attr('transform', "translate(25,20)")
     legend_view_2.append('text')
       .text('Grad. class size')
-      .attr('class', 'legend_header')    
+      .attr('class', 'legend_header')
+      .attr('x',-15)
     legend = legend_view_2.selectAll('.legend')
       .data(legend_data.reverse())
       .enter().append('g')
-      .attr('transform', (d,i) -> "translate(0,#{i*20+10})")
+      .attr('transform', (d,i) -> "translate(10,#{(Math.sqrt(i+1))*50-40})")
     legend.append('circle')
       .attr('class', 'legend-circle')
       .attr('cy', (d,i) -> 20*i+20 )
       .attr('r', (d) -> d.r)
     legend.append('text')
-      .attr('x', 24)
+      .attr('x', 34)
       .attr('y', (d,i) -> 20*i+20)
       .attr('dy', '.35em')
       .text((d) -> "#{Math.round(d.size)}")

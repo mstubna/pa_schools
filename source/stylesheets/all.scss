@@ -10,32 +10,87 @@ $lightblue: #5F7DDB;
 
 body {
   @include open_sans;
-  max-width: 1024px;
-  
+  width: 1024px;
+  padding: 0;
+  margin: 0;
+
+  p, h1, h3, h3, h4, h5, h6 {
+    margin-left: 20px;
+  }
   p {
     max-width: 500px;
   }
   
-  #graph_1_container {
+  .graph_container {
     position: relative;
     width: 1024px;
-    height: 768px;
-    #graph_1 {
+    overflow: hidden;
+    .graph {
       position: absolute;
-      width: 960px;
+      width: 100%;
       height: 100%;
+      svg {
+        position: absolute;
+      }
     }
-    .legend {
-      position: absolute;
-      width: 150px;
-      right: 0;
-      background: white;
+  }
+}
+
+//
+// Distribution
+//
+#distribution_graph_container {
+  height: 100px;
+}
+
+//
+// Regional graph
+//
+#regional_graph_container {
+  height: 500px;
+  .legend {
+    position: absolute;
+    width: 150px;
+    right: 0;
+    background: white;
+    .legend-circle {
+      fill: none;
+      stroke: $darkgray;
+      stroke-width: 1.5px;
     }
-    #graph_1_legend_1 {
-      top: 50px;
-    }
-    #graph_1_legend_2 {
-      top: 225px;
+  }
+  #regional_graph_legend_1 {
+    top: 50px;
+  }
+  #regional_graph_legend_2 {
+    top: 225px;
+  }  
+  #regional_graph {  
+    svg {
+      .circle {
+        fill: rgba(0,0,0,0);
+        stroke-width: 1.5px;
+      }
+
+      .boundary {
+        fill: none;
+        stroke: #777;
+        stroke-width: .5px;
+        stroke-opacity: .5;
+      }
+
+      .state-boundary, .land {
+        fill: none;
+        stroke: $lightblue;
+        stroke-width: 1px;
+      }
+
+      .county-boundary {
+        fill: none;
+        stroke: $lightblue;
+        stroke-width: 0.5px;
+        stroke-opacity: 0.5;
+      }
     }
   }
 }
@@ -58,31 +113,6 @@ svg {
     stroke-width: 7;
     fill: none;
   }
-  
-  .circle {
-    fill: rgba(0,0,0,0);
-    stroke-width: 1.5px;
-  }
-
-  .boundary {
-    fill: none;
-    stroke: #777;
-    stroke-width: .5px;
-    stroke-opacity: .5;
-  }
-
-  .state-boundary, .land {
-    fill: none;
-    stroke: $lightblue;
-    stroke-width: 1px;
-  }
-
-  .county-boundary {
-    fill: none;
-    stroke: $lightblue;
-    stroke-width: 0.5px;
-    stroke-opacity: 0.5;
-  } 
 }
 
 .d3-tip {
@@ -96,14 +126,6 @@ svg {
   max-width: 300px;
   p {
     margin: 0;
-  }
-}
-
-.legend {
-  .legend-circle {
-    fill: none;
-    stroke: $darkgray;
-    stroke-width: 1.5px;
   }
 }
 
