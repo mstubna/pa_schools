@@ -24,7 +24,9 @@ body {
   .graph_container {
     position: relative;
     width: 1024px;
+    height: 500px;
     overflow: hidden;
+    margin-bottom: 70px;
     .graph {
       position: absolute;
       width: 100%;
@@ -33,26 +35,27 @@ body {
         position: absolute;
       }
     }
+    .legend {
+      position: absolute;
+      width: 150px;
+      top: 10px;
+      left: 90px;
+      background: white;
+    }
   }
 }
 
 //
 // Distribution
 //
-#distribution_graph_container {
-  height: 100px;
-}
 
 //
 // Regional graph
 //
 #regional_graph_container {
-  height: 500px;
   .legend {
-    position: absolute;
-    width: 150px;
+    left: auto;
     right: 0;
-    background: white;
     .legend-circle {
       fill: none;
       stroke: $darkgray;
@@ -60,7 +63,7 @@ body {
     }
   }
   #regional_graph_legend_1 {
-    top: 50px;
+    top: 20px;
   }
   #regional_graph_legend_2 {
     top: 225px;
@@ -105,13 +108,7 @@ svg {
   }
   // axis text
   .axis text {
-    font-size: 1.5em;
     @include open_sans;
-  }
-  // graph line
-  path {
-    stroke-width: 7;
-    fill: none;
   }
 }
 
