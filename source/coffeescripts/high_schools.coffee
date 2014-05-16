@@ -138,7 +138,7 @@ class HighSchools
     @lng_extent = d3.extent @data.map((d) -> d.lng)
     @lat_extent = d3.extent @data.map((d) -> d.lat)
     
-   # create the view
+    # create the view
     @regional_graph_view = d3.select('#regional_graph').append('svg')
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)

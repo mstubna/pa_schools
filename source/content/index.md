@@ -1,6 +1,7 @@
 # Pennsylvania High School SAT scores
 ### for the 2012-2013 school year
 
+Data is from [PA dept of education school performance site](http://paschoolperformance.org/Downloads).  
 </br>
 
 **School score distribution**  
