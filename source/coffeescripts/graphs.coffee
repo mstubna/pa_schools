@@ -1,11 +1,8 @@
-$ ->
-  new HighSchools
+
+class @Graphs
   
-class HighSchools
-  
-  constructor: ->
-    @data = window.high_school_data
-    @data.sort (a,b) -> b['SAT Subject Scores (Averages) - Math']-a['SAT Subject Scores (Averages) - Math']
+  constructor: (args) ->
+    {@data} = args
     @sat_scores = @data.map (d) -> d['SAT Subject Scores (Averages) - Math']
     @sat_extent = d3.extent @sat_scores
                     
@@ -226,7 +223,7 @@ class HighSchools
     @circles
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
-  
+
   get_tooltip: ->
     tip = d3.tip()
       .attr('class', 'd3-tip')

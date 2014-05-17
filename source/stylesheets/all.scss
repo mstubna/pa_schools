@@ -2,25 +2,39 @@
 // globals
 // --------
 $gray: #5D5D5D;
-$darkgray: rgba(50, 50, 50, 0.8);;
+$lightgray: rgb(250, 250, 250);
+$darkgray: rgba(50, 50, 50, 0.8);
 $darkblue: #00093E;
 $lightblue: #5F7DDB;
 
 @import 'fonts';
 
+html {
+  background: $lightgray;
+}
+
 body {
   @include open_sans;
   width: 1024px;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  background: white;
+  padding-bottom: 20px;
 
   p, h1, h3, h3, h4, h5, h6 {
     margin-left: 20px;
+    margin-top: 0;
   }
-  p {
-    max-width: 500px;
+  p { max-width: 500px; }
+  
+  a {
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
   }
   
+  // --------
+  // Common graph styles
+  // --------  
   .graph_container {
     position: relative;
     width: 1024px;
@@ -43,86 +57,123 @@ body {
       background: white;
     }
   }
-}
 
-//
-// Distribution
-//
-
-//
-// Regional graph
-//
-#regional_graph_container {
-  .legend {
-    left: auto;
-    right: 0;
-    .legend-circle {
-      fill: none;
-      stroke: $darkgray;
-      stroke-width: 1.5px;
-    }
-  }
-  #regional_graph_legend_1 {
-    top: 20px;
-  }
-  #regional_graph_legend_2 {
-    top: 225px;
-  }  
-  #regional_graph {  
-    svg {
-      .circle {
-        fill: rgba(0,0,0,0);
+  // --------
+  // Regional graph
+  // --------
+  #regional_graph_container {
+    .legend {
+      left: auto;
+      right: 0;
+      .legend-circle {
+        fill: none;
+        stroke: $darkgray;
         stroke-width: 1.5px;
       }
+    }
+    #regional_graph_legend_1 {
+      top: 20px;
+    }
+    #regional_graph_legend_2 {
+      top: 225px;
+    }  
+    #regional_graph {  
+      svg {
+        .circle {
+          fill: rgba(0,0,0,0);
+          stroke-width: 1.5px;
+        }
 
-      .boundary {
-        fill: none;
-        stroke: #777;
-        stroke-width: .5px;
-        stroke-opacity: .5;
-      }
+        .boundary {
+          fill: none;
+          stroke: #777;
+          stroke-width: .5px;
+          stroke-opacity: .5;
+        }
 
-      .state-boundary, .land {
-        fill: none;
-        stroke: $lightblue;
-        stroke-width: 1px;
-      }
+        .state-boundary, .land {
+          fill: none;
+          stroke: $lightblue;
+          stroke-width: 1px;
+        }
 
-      .county-boundary {
-        fill: none;
-        stroke: $lightblue;
-        stroke-width: 0.5px;
-        stroke-opacity: 0.5;
+        .county-boundary {
+          fill: none;
+          stroke: $lightblue;
+          stroke-width: 0.5px;
+          stroke-opacity: 0.5;
+        }
       }
     }
   }
-}
 
-svg {
-   // axis ticks
-  .axis path, .axis line {
-    fill: none;
-    stroke: $gray;
-    stroke-width: 1;
-    shape-rendering: crispEdges;
+  // --------
+  // Scatterplot
+  // --------
+  #scatterplot_graph_container {
+    #scatterplot_graph {
+      svg {
+        .circle {
+          stroke: $darkblue;
+          stroke-width: 1px;
+          fill: rgba(0,0,0,0);
+          &.active {
+            stroke: orange;
+            fill: orange;
+          }
+        }
+      }
+    }
+    #scatterplot_controls {
+      position: absolute;
+      left: 550px;
+      width: 200px;
+      select {
+        @include open_sans;
+        font-size: 1rem;
+        padding: 3px 6px;
+        border: 1px solid $gray;
+        height: 30px;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        outline: none;
+        margin: 10px 0;
+      }
+    }
   }
-  // axis text
-  .axis text {
-    @include open_sans;
+  
+  // --------
+  // Common svg styles
+  // --------
+  svg {
+     // axis ticks
+    .axis path, .axis line {
+      fill: none;
+      stroke: $gray;
+      stroke-width: 1;
+      shape-rendering: crispEdges;
+    }
+    // axis text
+    .axis text {
+      @include open_sans;
+    }
   }
-}
 
-.d3-tip {
-  margin: auto;
-  font-size: 0.8em;
-  font-weight: bold;
-  padding: 5px;
-  background: $darkgray;
-  color: #fff;
-  min-width: 150px;
-  max-width: 300px;
-  p {
-    margin: 0;
+  // --------
+  // Tooltips
+  // --------
+  .d3-tip {
+    margin: auto;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 5px;
+    background: $darkgray;
+    color: #fff;
+    min-width: 150px;
+    max-width: 300px;
+    p {
+      margin: 0;
+    }
   }
 }
 
