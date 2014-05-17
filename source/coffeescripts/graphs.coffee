@@ -68,9 +68,16 @@ class @Graphs
     # tooltips
     tip = @get_tooltip()
     view.call(tip)
+    self = this
     bars
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
+      .on('mouseover', (d) -> 
+        tip.show(d)
+        d3.select(this)
+          .attr('fill', 'rgb(100,100,100)'))
+      .on('mouseout', (d) ->
+        tip.hide(d)
+        d3.select(this)
+          .attr('fill', (d) -> self.color_scale(d['SAT Subject Scores (Averages) - Math'])))
   
   create_distribution_graph: ->
     margin = {top: 20, right: 0, bottom: 50, left: 80}
@@ -134,14 +141,7 @@ class @Graphs
     
     @lng_extent = d3.extent @data.map((d) -> d.lng)
     @lat_extent = d3.extent @data.map((d) -> d.lat)
-    
-    # create the view
-    @regional_graph_view = d3.select('#regional_graph').append('svg')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-      .append('g')
-      .attr('transform', "translate(#{margin.left},#{margin.top})")
-    
+        
     # estimate the 12th grade class enrollment and scale it so it represents the radius of the circle
     enrollment_r = (d) ->
       (d['School Enrollment']/(d['Grades Offered'].split(',').length*Math.PI))^(1/2)
@@ -161,21 +161,33 @@ class @Graphs
     
     # draw the US land boundaries, states, and counties
     # see: http://bl.ocks.org/mbostock/3734308
+    @boundary_view = d3.select('#regional_graph').append('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', "translate(#{margin.left},#{margin.top})")
     path = d3.geo.path().projection(projection)
     d3.json 'vendor/us.json', (error, us) =>
-      @regional_graph_view.append("path", ".boundary")
+      @boundary_view.append("path", ".boundary")
         .datum(topojson.feature(us, us.objects.land))
         .attr("class", "land")
         .attr("d", path)
-      @regional_graph_view.append("path", ".boundary")
+      @boundary_view.append("path", ".boundary")
         .datum(topojson.mesh(us, us.objects.states, (a, b) -> a isnt b))
         .attr("class", "state-boundary")
         .attr("d", path)
-      @regional_graph_view.insert("path", ".boundary")
+      @boundary_view.insert("path", ".boundary")
         .datum(topojson.mesh(us, us.objects.counties, (a, b) -> 
           a isnt b and not (a.id / 1000 ^ b.id / 1000) ))
         .attr("class", "county-boundary")
         .attr("d", path)
+
+    # create the view
+    @regional_graph_view = d3.select('#regional_graph').append('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', "translate(#{margin.left},#{margin.top})")
 
     # add the circles
     @circles = @regional_graph_view
@@ -190,6 +202,7 @@ class @Graphs
       .attr('cy', (d) => projection([d.lng,d.lat])[1])
       .attr('r', (d) -> r_scale(enrollment_r(d)))
       .attr('stroke', (d) => @color_scale(d['SAT Subject Scores (Averages) - Math']))
+      .attr('fill', 'rgba(0,0,0,0)')
     
     # add the size legend
     sizes = [20,  250, 500, 750, 1000]
@@ -220,10 +233,17 @@ class @Graphs
     # tooltips
     tip = @get_tooltip()
     @regional_graph_view.call(tip)
+    self = this
     @circles
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
-
+      .on('mouseover', (d) ->
+        tip.show(d)
+        d3.select(this)
+          .attr('fill', (d) -> self.color_scale(d['SAT Subject Scores (Averages) - Math'])))
+      .on('mouseout', (d) -> 
+        tip.hide(d)
+        d3.select(this)
+          .attr('fill', 'rgba(0,0,0,0)'))
+      
   get_tooltip: ->
     tip = d3.tip()
       .attr('class', 'd3-tip')

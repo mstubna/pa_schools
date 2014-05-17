@@ -101,8 +101,12 @@ class @Scatterplot
     @points
       .transition()
       .duration(1000)
-      .attr('cx', (d) => @x_scale(d[x_metric]))
-      .attr('cy', (d) => @y_scale(d[y_metric]))
+      .attr('cx', (d) =>
+        val = parseFloat(d[x_metric])
+        @x_scale(if isNaN(val) then -100 else val))
+      .attr('cy', (d) =>
+        val = parseFloat(d[y_metric])
+        @y_scale(if isNaN(val) then -100 else val))
     
     @tips.html (d) -> 
       "<p>#{d.name}</p>" +
