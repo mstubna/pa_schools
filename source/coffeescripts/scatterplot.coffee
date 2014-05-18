@@ -8,7 +8,7 @@ class @Scatterplot
     @height = 500 - @margin.top - @margin.bottom
 
     @create_view()
-    @add_selectors()
+    @add_controls()
     @x_selector.prop 'selectedIndex', @select_options.length-1
     @update_view()
 
@@ -62,7 +62,7 @@ class @Scatterplot
           .attr('r', 5)
           .classed('active',false))
   
-  add_selectors: ->
+  add_controls: ->
     @select_options = [
       'SAT Subject Scores (Averages) - Math'
       'SAT Subject Scores (Averages) - Reading'
