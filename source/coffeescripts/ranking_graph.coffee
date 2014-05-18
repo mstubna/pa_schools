@@ -80,7 +80,9 @@ class @RankingGraph
 
   add_controls: ->
     @checkbox = $("<input type='checkbox' name='ranking_checkbox' id='ranking_checkbox'>")
-    @checkbox.on 'change', @update_view
+    @checkbox.on 'change', =>
+      @update_view()
+      return false
 
     label = $("<label for='ranking_checkbox'>Highlight Philadelphia schools</label>")
     $('#ranking_graph_controls').append @checkbox, label
