@@ -30,7 +30,7 @@ class Main
     legend_data = colors.map (c) => { color: c, scores: @color_scale.invertExtent(c) }
     legend_view = d3.select("##{parent_view_id}").append('svg')
       .attr('width', 200)
-      .attr('height', 250)
+      .attr('height', 180)
       .append('g')
       .attr('transform', "translate(25,20)")
     legend_view.append('text')

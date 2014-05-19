@@ -47,7 +47,7 @@ class @RankingGraph
 
     x_scale = d3.scale.linear().domain([0, 2*@data.length/7]).range([0, @width])
 
-    y_scale = d3.scale.linear().domain(@sat_extent).range([@height, 0])
+    y_scale = d3.scale.linear().domain([0, @sat_extent[1]]).range([@height, 0])
     y_axis = d3.svg.axis().scale(y_scale).orient('left').tickFormat(d3.format('.0f'))
 
     # only show the first and last 1/7 of the data
