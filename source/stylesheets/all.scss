@@ -20,8 +20,24 @@ body {
   margin: 0 auto;
   background: white;
   padding: 20px 0;
+  
+  nav {
+    #logo {
+      float: right;
+      margin-right: 20px;
+      width: 192px;
+      height: 61px;
+      background: url('../images/logo_small.png');
+      background-size: 100%;
+    }
+  }
 
-  p, h1, h3, h3, h4, h5, h6 {
+  h1, h2, h3, h3, h4, h5, h6 {
+    @include open_sans_bold;
+    margin-left: 20px;
+    margin-top: 0;
+  }
+  p {
     margin-left: 20px;
     margin-top: 0;
   }
@@ -29,7 +45,7 @@ body {
   
   a {
     text-decoration: none;
-    &:hover { text-decoration: underline; }
+    @include open_sans_bold;
   }
   
   .graph_header {

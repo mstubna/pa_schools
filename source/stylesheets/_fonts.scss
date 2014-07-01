@@ -10,6 +10,17 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'open_sansbold';
+    src: url('../fonts/OpenSans-Bold-webfont.eot');
+    src: url('../fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Bold-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @mixin svg_compatible_font_color($color) {
   color: $color;
   fill: $color;
@@ -18,4 +29,9 @@
 @mixin open_sans {
   font-family: 'open_sansregular';
   @include svg_compatible_font_color($gray);
+}
+
+@mixin open_sans_bold {
+  font-family: 'open_sansbold';
+  @include svg_compatible_font_color($gray);  
 }
